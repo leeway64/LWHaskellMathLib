@@ -28,5 +28,5 @@ is_even :: Int -> Bool
 is_even n = n `mod` 2 == 0
 
 
-fibonacci :: Int -> Int
-fibonacci n = 
+--fibonacci :: Int -> Int
+--fibonacci n = 
