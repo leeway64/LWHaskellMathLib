@@ -1,12 +1,5 @@
 module SpaceNeedle (
     printSpaceNeedle,
-    printTop,
-    printCenter,
-    printUpperCenter,
-    printMainCenter,
-    printMainCenterHelper,
-    printBase,
-    printSpaces
 ) where
 
 
@@ -54,7 +47,22 @@ printMainCenterHelper n = do
 
 printBase :: Int -> IO()
 printBase n = do
-    putStrLn "bottom"
+    putStr "|"
+    printBottomBaseHelper (6 * n)
+    putStrLn "|"
+
+
+printBaseHelper :: Int -> IO()
+printBaseHelper 0 = putStr ""
+printBaseHelper x y = do
+    printBaseHelper x y
+
+
+printBottomBaseHelper :: Int -> IO()
+printBottomBaseHelper 0 = putStr ""
+printBottomBaseHelper n = do
+    putStr "\""
+    printBottomBaseHelper (n - 1)
 
 
 printSpaces :: Int -> IO()

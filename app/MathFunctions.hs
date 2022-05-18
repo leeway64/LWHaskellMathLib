@@ -1,4 +1,4 @@
-module LWHaskellMathLib (
+module MathFunctions (
     is_prime,
     print_list,
     is_even,
