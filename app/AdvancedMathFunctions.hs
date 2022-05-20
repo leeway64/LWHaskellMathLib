@@ -1,4 +1,4 @@
-module MathFunctions (
+module AdvancedMathFunctions (
     is_prime,
     print_list,
     is_even,
