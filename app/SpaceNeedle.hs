@@ -1,5 +1,5 @@
 module SpaceNeedle (
-    printSpaceNeedle,
+    printSpaceNeedle
 ) where
 
 
@@ -17,16 +17,20 @@ printTop j = do
     printNarrowPart j j
     printColonSection j 0
     
-    printSlashesSection j j
-    
     putStr "|"
     printQuotes (6 * j)
     putStrLn "|"
+    
+    printSlashesSection j 0
 
 
 printSlashesSection :: Int -> Int -> IO()
 printSlashesSection 0 v = putStr ""
 printSlashesSection u v = do
+    printSpaces (-2 * u + 8)
+    putStr "\\_"
+    printSlashes (2 * u + 3)
+    putStrLn "_/"
     printSlashesSection (u - 1) (v + 1)
 
 
@@ -63,7 +67,13 @@ printMainCenterHelper :: Int -> Int -> IO()
 printMainCenterHelper 0 m = putStr ""
 printMainCenterHelper n m = do
     printSpaces ((2 * m) + 1)
-    putStrLn "|&&||&&|"
+
+    putStr "|"
+    printPercent (m - 2)
+    putStr "||"
+    printPercent (m - 2)
+    putStrLn "|"
+
     printMainCenterHelper (n - 1) m
 
 
@@ -87,6 +97,13 @@ printColonSection x y = do
     printColon (3 * y)
     putStrLn "\\__"
     printColonSection (x - 1) (y + 1)
+
+
+printPercent :: Int -> IO()
+printPercent 0 = putStr ""
+printPercent e = do
+    putStr "%"
+    printPercent (e - 1)
 
 
 printQuotes :: Int -> IO()
