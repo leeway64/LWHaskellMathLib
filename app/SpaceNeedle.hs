@@ -21,17 +21,17 @@ printTop j = do
     printQuotes (6 * j)
     putStrLn "|"
     
-    printSlashesSection j 0
+    printSlashesSection (3 * j - 1) 0 j
 
 
-printSlashesSection :: Int -> Int -> IO()
-printSlashesSection 0 v = putStr ""
-printSlashesSection u v = do
-    printSpaces (-2 * u + 8)
+printSlashesSection :: Int -> Int -> Int -> IO()
+printSlashesSection u v 0 = putStr ""
+printSlashesSection u v j = do
+    printSpaces v
     putStr "\\_"
-    printSlashes (2 * u + 3)
+    printSlashes u
     putStrLn "_/"
-    printSlashesSection (u - 1) (v + 1)
+    printSlashesSection (u - 2) (v + 2) (j - 1)
 
 
 printSlashes :: Int -> IO()
