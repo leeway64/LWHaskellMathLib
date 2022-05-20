@@ -14,22 +14,42 @@ printSpaceNeedle i = do
 -- Print the top "crown" section of the Space Needle
 printTop :: Int -> IO()
 printTop j = do
-    putStrLn "Top"
+    printNarrowPart j j
+    printColonSection j 0
+    
+    printSlashesSection j j
+    
+    putStr "|"
+    printQuotes (6 * j)
+    putStrLn "|"
+
+
+printSlashesSection :: Int -> Int -> IO()
+printSlashesSection 0 v = putStr ""
+printSlashesSection u v = do
+    printSlashesSection (u - 1) (v + 1)
+
+
+printSlashes :: Int -> IO()
+printSlashes 0 = putStr ""
+printSlashes u = do
+    putStr "/\\"
+    printSlashes (u - 1)
 
 
 -- Print the middle long "neck" or "stem" part
 printCenter :: Int -> IO()
 printCenter k = do
-    printUpperCenter k k
+    printNarrowPart k k
     printMainCenter k k
     
 
-printUpperCenter :: Int -> Int -> IO()
-printUpperCenter 0 y = putStr ""
-printUpperCenter x y  = do
+printNarrowPart :: Int -> Int -> IO()
+printNarrowPart 0 y = putStr ""
+printNarrowPart x y  = do
     printSpaces (3 * y)
     putStrLn "||"
-    printUpperCenter (x - 1) y
+    printNarrowPart (x - 1) y
     
 
 printMainCenter :: Int -> Int -> IO()
@@ -50,30 +70,30 @@ printMainCenterHelper n m = do
 -- Print the supporting base
 printBase :: Int -> IO()
 printBase n = do
-    printBaseHelper n 0
+    printColonSection n 0
     
     putStr "|"
-    printBottomBaseHelper (6 * n)
+    printQuotes (6 * n)
     putStrLn "|"
 
 
-printBaseHelper :: Int -> Int -> IO()
-printBaseHelper 0 y = putStr ""
-printBaseHelper x y = do
+printColonSection :: Int -> Int -> IO()
+printColonSection 0 y = putStr ""
+printColonSection x y = do
     printSpaces ((3 * x) - 3)
     putStr "__/"
     printColon (3 * y)
     putStr "||"
     printColon (3 * y)
     putStrLn "\\__"
-    printBaseHelper (x - 1) (y + 1)
+    printColonSection (x - 1) (y + 1)
 
 
-printBottomBaseHelper :: Int -> IO()
-printBottomBaseHelper 0 = putStr ""
-printBottomBaseHelper n = do
+printQuotes :: Int -> IO()
+printQuotes 0 = putStr ""
+printQuotes n = do
     putStr "\""
-    printBottomBaseHelper (n - 1)
+    printQuotes (n - 1)
 
 
 printColon :: Int -> IO()
@@ -86,7 +106,6 @@ printColon x = do
 printSpaces :: Int -> IO()
 printSpaces 0 = putStr ""
 printSpaces n = do
-    --print n
     putStr " "
     printSpaces (n - 1)
 
