@@ -18,4 +18,7 @@ main = do
     print (successor 9)
     print (divide 9 9)
     print (doubleIfGreaterThanPi 3.15)
-    
+    print (contains 4 [4, 4, 100])
+    print (get_elems 1 [999, 0])
+    print (repeat_val 5 6)
+    print (iceFire [-1..13])
