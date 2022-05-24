@@ -22,3 +22,7 @@ main = do
     print (get_elems 1 [999, 0])
     print (repeat_val 5 6)
     print (iceFire [-1..13])
+    let adjectives = ["Noble", "Honorable"]
+    let nouns = ["Jon Snow", "Ned Stark", "Robb Stark"]
+    print (adjectivesNouns adjectives nouns)
+    print (triangles 10 24)
