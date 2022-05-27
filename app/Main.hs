@@ -26,3 +26,6 @@ main = do
     let nouns = ["Jon Snow", "Ned Stark", "Robb Stark"]
     print (adjectivesNouns adjectives nouns)
     print (triangles 10 24)
+    print (removeNonUppercase "iceFIRE")
+    print (factorial (4))
+    print (addVectors (2, 4) (3, 8))

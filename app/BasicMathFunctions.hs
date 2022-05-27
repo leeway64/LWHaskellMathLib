@@ -7,7 +7,10 @@ module BasicMathFunctions (
     repeat_val,
     iceFire,
     adjectivesNouns,
-    triangles
+    triangles,
+    removeNonUppercase,
+    factorial,
+    addVectors
 ) where
 
 
@@ -48,3 +51,23 @@ adjectivesNouns adjectives nouns = [adjective ++ " " ++ noun | adjective <- adje
 triangles z perimeter = [(a, b, c) | c <- [1..z], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2,
                                                                         a + b + c == perimeter]
 
+-- Remove any character from the string that is not an uppercase letter
+removeNonUppercase :: [Char] -> [Char]  -- Explicit type declaration
+removeNonUppercase st = [ c | c <- st, c `elem` ['A'..'Z']]  
+
+
+{-
+Find the factorial recursively.
+Integral is a typeclass that includes only whole numbers. A typeclass is an interface that
+determines behavior. If a type is a member of the typeclass, then it implements the behavior of
+the typeclass (adapted from Learn You a Haskell for Great Good).
+The => symbol is a class constraint. In this case, it forces a to be an Integral
+-}
+factorial :: (Integral a) => a -> a
+factorial 0 = 1
+factorial n = n * factorial (n - 1)
+
+
+-- Add 2 vectors together using pattern matching.
+addVectors :: (Num a) => (a, a) -> (a, a) -> (a, a)
+addVectors (x1, y1) (x2, y2) = (x1 + x2, y1 + y2)
