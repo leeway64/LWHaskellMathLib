@@ -29,3 +29,6 @@ main = do
     print (removeNonUppercase "iceFIRE")
     print (factorial (4))
     print (addVectors (2, 4) (3, 8))
+    print (tell [1,2,3])
+    print (length' [3, 4, 5, 6, 777])
+    print (first' "Targaryen")

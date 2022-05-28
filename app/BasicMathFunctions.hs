@@ -10,7 +10,11 @@ module BasicMathFunctions (
     triangles,
     removeNonUppercase,
     factorial,
-    addVectors
+    addVectors,
+    tell,
+    length',
+    first',
+    
 ) where
 
 
@@ -60,7 +64,7 @@ removeNonUppercase st = [ c | c <- st, c `elem` ['A'..'Z']]
 Find the factorial recursively.
 Integral is a typeclass that includes only whole numbers. A typeclass is an interface that
 determines behavior. If a type is a member of the typeclass, then it implements the behavior of
-the typeclass (adapted from Learn You a Haskell for Great Good).
+the typeclass (information adapted from Learn You a Haskell for Great Good).
 The => symbol is a class constraint. In this case, it forces a to be an Integral
 -}
 factorial :: (Integral a) => a -> a
@@ -71,3 +75,31 @@ factorial n = n * factorial (n - 1)
 -- Add 2 vectors together using pattern matching.
 addVectors :: (Num a) => (a, a) -> (a, a) -> (a, a)
 addVectors (x1, y1) (x2, y2) = (x1 + x2, y1 + y2)
+
+
+-- Prints information about a list
+tell :: (Show a) => [a] -> String
+tell [] = "The list is empty"
+tell (x:[]) = "The list has one element: " ++ show x
+tell (x:y:[]) = "The list has two elements: " ++ show x ++ " and " ++ show y
+tell (x:y:_) = "This list is longer than 2 elements. The first two elements are: " ++ show x ++ " and " ++ show y
+
+
+length' :: (Num b) => [a] -> b
+length' [] = 0
+-- The _ matches the head of the list. The length is equal to 1 added to the length of tail.
+length' (_:xs) = 1 + length' xs
+
+
+first' :: String -> String
+first' "" = "Empty string"
+-- all@(x:xs) is an as pattern. I can use all as if I'm calling x:xs.
+first' all@(x:xs) = "The first letter of " ++ all ++ " is " ++ [x]
+
+
+-- | is a guard; they're kind of like if-else statements.
+-- Ord is a typeclass for things that can be ordered.
+max' :: (Ord a) => a -> a -> a
+max' a b
+    | a > b = a
+    | otherwise = b
