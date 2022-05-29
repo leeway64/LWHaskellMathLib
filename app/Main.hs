@@ -32,3 +32,5 @@ main = do
     print (tell [1,2,3])
     print (length' [3, 4, 5, 6, 777])
     print (first' "Targaryen")
+    print (bmiTell 85 1.90)
+    print (initials "Aegon" "Targaryen")

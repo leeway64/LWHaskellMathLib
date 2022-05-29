@@ -14,7 +14,8 @@ module BasicMathFunctions (
     tell,
     length',
     first',
-    
+    bmiTell,
+    initials,
 ) where
 
 
@@ -103,3 +104,24 @@ max' :: (Ord a) => a -> a -> a
 max' a b
     | a > b = a
     | otherwise = b
+
+
+-- Prints out the BMI results. weight and height are in kilograms and meters.
+-- The variables in the where section can be used in this function
+bmiTell :: (RealFloat a) => a -> a -> String
+bmiTell weight height
+    | bmi <= underweight = "You're underweight"
+    | bmi <= normal = "You're normal"
+    | bmi <= overweight    = "You're overweight"
+    | otherwise     = "You're obese"
+    where bmi = weight / height ^ 2
+          underweight = 18.5
+          normal = 25.0
+          overweight = 30.0
+
+
+-- Get initials based on first name and last name
+initials :: String -> String -> String
+initials firstname lastname = [f] ++ ". " ++ [l] ++ "."
+    where (f:_) = firstname
+          (l:_) = lastname
